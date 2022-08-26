@@ -61,13 +61,13 @@ public class ReservationService {
             }
         }
 
-//        List<IRoom> freeRoomsForGivenDates = reservations.entrySet().stream()
-//                .filter(element -> {
-//                    Reservation r = element.getValue();
-//                    boolean b = isBefore(checkInDate, r.getCheckInDate())
-//                            || isAfter(checkOutDate, r.getGetCheckOutDate());
-//                    return b;
-//                }).map(e -> e.getValue().getRoom()).collect(Collectors.toList());
+        List<IRoom> freeRoomsForGivenDates2 = reservations.entrySet().stream()
+                .filter(element -> {
+                    Reservation r = element.getValue();
+                    boolean b = isBefore(checkInDate, r.getGetCheckOutDate())
+                            || isAfter(checkOutDate, r.getCheckInDate());
+                    return b;
+                }).map(e -> e.getValue().getRoom()).collect(Collectors.toList());
 
         //We want the rooms that are in rooms but not in freeRoomsForGivenDates
         for (int i = 0; i < rooms.size(); i++) {

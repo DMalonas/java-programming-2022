@@ -10,4 +10,6 @@ public interface IRoom {
 
     public int getId();
     public boolean isFree();
+
+
 }

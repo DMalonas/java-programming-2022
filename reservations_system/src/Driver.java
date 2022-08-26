@@ -48,42 +48,46 @@ public class Driver {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 
         while (true) {
-            System.out.println("Choose mode [1=Admin, 2=Hotel, 3=Exit-Program]");
-            int input = sc.nextInt();
-            if (input == 1) {
-                while(true) {
-                    adminMenu.printAdminMenu();
-                    input = sc.nextInt();
-                    if (input == 1) {
-                        displayCustomers(adminResource);
-                    } else if (input == 2) {
-                        displayRooms(adminResource);
-                    } else if (input == 3) {
-                        displayReservations(adminResource);
-                    } else if (input == 4) {
-                        addRoom(sc, adminResource);
-                    } else if (input == 5) {
-                        break;
+            try {
+                System.out.println("Choose mode [1=Admin, 2=Hotel, 3=Exit-Program]");
+                int input = sc.nextInt();
+                if (input == 1) {
+                    while (true) {
+                        adminMenu.printAdminMenu();
+                        input = sc.nextInt();
+                        if (input == 1) {
+                            displayCustomers(adminResource);
+                        } else if (input == 2) {
+                            displayRooms(adminResource);
+                        } else if (input == 3) {
+                            displayReservations(adminResource);
+                        } else if (input == 4) {
+                            addRoom(sc, adminResource);
+                        } else if (input == 5) {
+                            break;
+                        }
                     }
-                }
-            } else if (input == 2) {
-                while(true) {
-                    mainMenu.printMainMenu();
-                    input = sc.nextInt();
-                    if (input == 1) {
-                        findAndReserveARoom(sc, hotelResource, formatter);
-                    } else if (input == 2) {
-                        seeMyReservations(sc, hotelResource);
-                    } else if (input == 3) {
-                        createCustomerAccount(sc, hotelResource);
-                    } else if (input == 4) {
-                        break;
-                    } else if (input == 5) {
-                        exit("\nThe program will now exit");
+                } else if (input == 2) {
+                    while (true) {
+                        mainMenu.printMainMenu();
+                        input = sc.nextInt();
+                        if (input == 1) {
+                            findAndReserveARoom(sc, hotelResource, formatter);
+                        } else if (input == 2) {
+                            seeMyReservations(sc, hotelResource);
+                        } else if (input == 3) {
+                            createCustomerAccount(sc, hotelResource);
+                        } else if (input == 4) {
+                            break;
+                        } else if (input == 5) {
+                            exit("\nThe program will now exit");
+                        }
                     }
+                } else if (input == 3) {
+                    return;
                 }
-            } else if (input == 3) {
-                return;
+            } catch (Exception e) {
+                System.out.println("\nBad input");
             }
         }
     }

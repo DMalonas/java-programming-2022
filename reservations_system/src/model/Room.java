@@ -23,20 +23,29 @@ public class Room implements IRoom{
         isFree = true;
     }
 
+    public Room(int id, Double price, String roomNumber,
+            RoomType roomType, boolean isFree) {
+        this.id = id;
+        this.roomNumber = roomNumber;
+        this.price = price;
+        this.roomType = roomType;
+        this.isFree = isFree;
+    }
+
     @Override public String getRoomNumber() {
         return roomNumber;
     }
 
     @Override public Double getRoomPrice() {
-        return null;
+        return price;
     }
 
     @Override public RoomType getRoomType() {
-        return null;
+        return roomType;
     }
 
     @Override public boolean isFree() {
-        return false;
+        return isFree;
     }
 
     public void setIsFree(boolean isFree) {

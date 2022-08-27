@@ -110,6 +110,7 @@ public class Driver {
         if (customersReservations != null) {
             customersReservations.forEach(customersReservation -> System.out.println(customersReservation.toString()));
         }
+        int a = 5;
     }
 
     private static void findAndReserveARoom(Scanner sc, HotelResource hotelResource, SimpleDateFormat formatter) {

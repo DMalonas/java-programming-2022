@@ -5,18 +5,20 @@ import model.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * @author DMalonas
  */
 public class ReservationService {
 
-    private static Map<String, Reservation> reservations;
+    private static Map<String, List<Reservation>> reservations;
     private static List<IRoom> rooms;
 
 
     public ReservationService() {
         this.rooms = new ArrayList<>();
-        reservations = new HashMap<>();
+        reservations = new HashMap<String, List<Reservation>>();
     }
 
     public void addRoom(List<IRoom> rooms) {
@@ -31,15 +33,13 @@ public class ReservationService {
 
     public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         IRoom r = new Room(room.getId(), room.getRoomPrice(), room.getRoomNumber(), room.getRoomType(), false);
-//        rooms.stream().filter(rm -> rm.getId() != r.getId()).collect(Collectors.toList());
-        for (int i = 0; i < rooms.size(); i++) {
-            if (rooms.get(i).getId() == room.getId()) {
-                rooms.add(i, r);
-                break;
-            }
-        }
         Reservation reservation = new Reservation(customer, r, checkInDate, checkOutDate);
-        reservations.put(customer.getEmail(), reservation);
+        List<Reservation> reservationsForCustomer = reservations.get(customer.getEmail());
+        if (reservationsForCustomer == null) {
+            reservationsForCustomer = new ArrayList<>();
+        }
+        reservationsForCustomer.add(reservation);
+        reservations.put(customer.getEmail(), reservationsForCustomer);
         return reservation;
     }
 
@@ -48,42 +48,115 @@ public class ReservationService {
             System.out.println("\nCheckin date has to be before checkout date");
             return new ArrayList<>();
         }
-        List<IRoom> finalList = new ArrayList<>();
 
-
-        List<IRoom> freeRoomsForGivenDates = new ArrayList<>();
-        for (Reservation reservation : reservations.values()) {
-            Date reservationCheckInDate = reservation.getCheckInDate();
-            Date reservationCheckoutDate = reservation.getGetCheckOutDate();
-            boolean isBefore = isBefore(checkInDate, reservationCheckoutDate);
-            if (isBefore || isAfter(checkOutDate, reservationCheckInDate)) {
-                freeRoomsForGivenDates.add(reservation.getRoom());
-            }
-        }
-
-        List<IRoom> freeRoomsForGivenDates2 = reservations.entrySet().stream()
-                .filter(element -> {
-                    Reservation r = element.getValue();
-                    boolean b = isBefore(checkInDate, r.getGetCheckOutDate())
-                            || isAfter(checkOutDate, r.getCheckInDate());
-                    return b;
-                }).map(e -> e.getValue().getRoom()).collect(Collectors.toList());
-
-        //We want the rooms that are in rooms but not in freeRoomsForGivenDates
+        //filter all the rooms
+        //and if there is no room with the same id reserved for the time given, then keep that room
+        //and add it to the list
+        //We want the rooms that are in the rooms list but not in freeRoomsForGivenDates
+        Collection<IRoom> finalList2 = new ArrayList<>();
+        finalList2.addAll(rooms);
         for (int i = 0; i < rooms.size(); i++) {
-            boolean found = false;
-            for (int j = 0; j < freeRoomsForGivenDates.size(); j++) {
-                if (freeRoomsForGivenDates.get(j).getId() == rooms.get(i).getId()) {
-                    IRoom iRoom = rooms.get(i);
-                    int id = iRoom.getId();
-                    String roomNumber = iRoom.getRoomNumber();
-                    Double roomPrice = iRoom.getRoomPrice();
-                    RoomType roomType = iRoom.getRoomType();
-                    rooms.set(i, new Room(id, roomPrice, roomNumber, roomType, true));
+            List<Reservation> reservationValues = reservations.values().stream()
+                    .flatMap(List::stream)
+                    .collect(Collectors.toList());
+            for (int j = 0; j < reservationValues.size(); j++) {
+                IRoom currentRoom = rooms.get(i);
+                Reservation currentReservation = reservationValues.get(j);
+                IRoom currentReservedRoom = currentReservation.getRoom();
+                if (currentReservedRoom.getId() == currentRoom.getId()) {
+                    boolean  datesDontOverlap = isBefore(checkInDate, currentReservation.getGetCheckOutDate())
+                            || isAfter(checkOutDate, currentReservation.getCheckInDate());
+                    if (datesDontOverlap == false) {
+                        finalList2.remove(currentRoom);
+                    }
                 }
             }
         }
-        return rooms;
+        return finalList2;
+
+//        List<IRoom> finalList = new ArrayList<>();
+
+
+//        List<IRoom> freeRoomsForGivenDates = new ArrayList<>();
+//        for (Reservation reservation : reservations.values()) {
+//            Date reservationCheckInDate = reservation.getCheckInDate();
+//            Date reservationCheckoutDate = reservation.getGetCheckOutDate();
+//            boolean isBefore = isBefore(checkInDate, reservationCheckoutDate);
+//            if (isBefore || isAfter(checkOutDate, reservationCheckInDate)) {
+//                freeRoomsForGivenDates.add(reservation.getRoom());
+//            }
+//        }
+
+//        List<IRoom> freeRoomsForGivenDatesThatHoldAtLeastOneReservation = reservations.values().stream()
+//                .filter(r -> {
+//                    boolean  datesOverlap = isBefore(checkInDate, r.getGetCheckOutDate())
+//                            || isAfter(checkOutDate, r.getCheckInDate());
+//                    if (!datesOverlap) {
+//                        return true;
+//                    }
+//                    return false;
+//                }).map(e -> e.getRoom()).collect(toList());
+
+
+
+//        numbers1.stream()
+//                .flatMap(i ->
+//                        numbers2.stream()
+//                                .filter(j -> (i + j) % 3 == 0)
+//                                .map(j -> new int[]{i, j})
+//                )
+//                .collect(toList());
+
+        /**
+         * Loop through reservations, if date overlap is found remove from rooms
+//         */
+//        return reservations.values().stream().filter(reservation -> {
+//                                    rooms.stream().anyMatch(room -> {
+//                                        boolean datesOverlap = isBefore(checkInDate, reservation.getGetCheckOutDate())
+//                                                || isAfter(checkOutDate, reservation.getCheckInDate());
+//                                        if (!datesOverlap) {
+//                                            return true;
+//                                        }
+//                                        boolean requestedRoomIsReservedForCertainDates = room.getId() == reservation.getRoom().getId();
+//                                        if (requestedRoomIsReservedForCertainDates) {
+//                                            return false;
+//                                        }
+//                                        return true;
+//                                    })
+//
+//        return reservations.values().stream().flatMap(r -> rooms.stream().filter(room -> {
+//            IRoom reservedRoom = r.getRoom();
+//            boolean datesOverlap = isBefore(checkInDate, r.getGetCheckOutDate())
+//                    || isAfter(checkOutDate, r.getCheckInDate());
+//            if (!datesOverlap) {
+//                return true;
+//            }
+//            boolean requestedRoomIsReservedForCertainDates = room.getId() == reservedRoom.getId();
+//            if (requestedRoomIsReservedForCertainDates) {
+//                return false;
+//            }
+//            return true;
+//        })).collect(Collectors.toList());
+
+
+//        List<IRoom> collect = rooms.stream().flatMap(room -> reservations.values().stream()
+//                        .filter(reservation -> {
+//                            IRoom reservedRoom = reservation.getRoom();
+//                            boolean datesOverlap = isBefore(checkInDate, reservation.getGetCheckOutDate())
+//                                    || isAfter(checkOutDate, reservation.getCheckInDate());
+//                            if (!datesOverlap) {
+//                                return true;
+//                            }
+//                            boolean requestedRoomIsReservedForCertainDates = room.getId() == reservedRoom.getId();
+//                            if (requestedRoomIsReservedForCertainDates) {
+//                                return false;
+//                            }
+//                            return true;
+//                        })
+//                        .map(reservation -> reservation.getRoom())
+//                )
+//                .collect(toList());
+//        return collect;
     }
 
     private boolean isBefore(Date checkInDate, Date reservationCheckoutDate) {
@@ -95,10 +168,14 @@ public class ReservationService {
     }
 
     public Collection<Reservation> getCustomersReservation(Customer customer) {
-        List<Reservation> customerReservations = reservations.entrySet().stream().filter(element -> {
-            return element.getValue().getCustomer().getEmail().equals(customer.getEmail());
-        }).map(e -> e.getValue()).collect(Collectors.toList());
-        return customerReservations;
+        for (Map.Entry<String, List<Reservation>> entry : reservations.entrySet()) {
+            String key = entry.getKey();
+            List<Reservation> value = entry.getValue();
+            if (key.equals(customer.getEmail())) {
+                return value;
+            }
+        }
+        return new ArrayList<>();
     }
 
     public void printAllReservations() {
@@ -107,7 +184,7 @@ public class ReservationService {
         });
     }
 
-    public Map<String, Reservation> getAllReservations() {
+    public Map<String, List<Reservation>> getAllReservations() {
         return reservations;
     }
 

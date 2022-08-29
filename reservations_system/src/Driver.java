@@ -51,40 +51,52 @@ public class Driver {
             try {
                 System.out.println("Choose mode [1=Admin, 2=Hotel, 3=Exit-Program]");
                 int input = sc.nextInt();
-                if (input == 1) {
-                    while (true) {
-                        adminMenu.printAdminMenu();
-                        input = sc.nextInt();
-                        if (input == 1) {
-                            displayCustomers(adminResource);
-                        } else if (input == 2) {
-                            displayRooms(adminResource);
-                        } else if (input == 3) {
-                            displayReservations(adminResource);
-                        } else if (input == 4) {
-                            addRoom(sc, adminResource);
-                        } else if (input == 5) {
-                            break;
-                        }
-                    }
-                } else if (input == 2) {
-                    while (true) {
-                        mainMenu.printMainMenu();
-                        input = sc.nextInt();
-                        if (input == 1) {
-                            findAndReserveARoom(sc, hotelResource, formatter);
-                        } else if (input == 2) {
-                            seeMyReservations(sc, hotelResource);
-                        } else if (input == 3) {
-                            createCustomerAccount(sc, hotelResource);
-                        } else if (input == 4) {
-                            break;
-                        } else if (input == 5) {
-                            exit("\nThe program will now exit");
-                        }
-                    }
-                } else if (input == 3) {
-                    return;
+                switch(input) {
+                    case 1:
+                        do {
+                            adminMenu.printAdminMenu();
+                            input = sc.nextInt();
+                            switch(input) {
+                                case 1:
+                                    displayCustomers(adminResource);
+                                break;
+                                case 2:
+                                    displayRooms(adminResource);
+                                break;
+                                case 3:
+                                    displayReservations(adminResource);
+                                break;
+                                case 4:
+                                    addRoom(sc, adminResource);
+                                    break;
+                                case 5:
+                                break;
+                            }
+                        } while (input != 5);
+                    break;
+                    case 2:
+                        do {
+                            mainMenu.printMainMenu();
+                            input = sc.nextInt();
+                            switch (input) {
+                                case 1:
+                                    findAndReserveARoom(sc, hotelResource, formatter);
+                                break;
+                                case 2:
+                                    seeMyReservations(sc, hotelResource);
+                                break;
+                                case 3:
+                                    createCustomerAccount(sc, hotelResource);
+                                break;
+                                case 4:
+                                break;
+                                case 5:
+                                    exit("\nThe program will now exit");
+                            }
+                        } while (input != 4);
+                    break;
+                    case 3:
+                        return;
                 }
             } catch (Exception e) {
                 System.out.println("\nBad input");

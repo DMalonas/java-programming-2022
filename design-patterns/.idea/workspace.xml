@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25ffb9e8-164c-4e8c-8425-3762d52b763b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/api/HotelResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/api/HotelResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/FreeRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/FreeRoom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Reservation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Room.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/service/ReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/service/ReservationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../reservations_system/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../reservations_system/src/api/HotelResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/api/HotelResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reservations_system/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reservations_system/src/model/FreeRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/model/FreeRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reservations_system/src/model/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/model/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../reservations_system/src/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/model/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../reservations_system/src/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/service/ReservationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +43,10 @@
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -49,7 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1661530289842</updated>
       <workItem from="1661530291542" duration="19000" />
-      <workItem from="1661530390898" duration="1096000" />
+      <workItem from="1661530390898" duration="1938000" />
     </task>
     <servers />
   </component>

@@ -31,9 +31,9 @@ public class HotelResource {
         this.customerService.addCustomer(email, firstName, lastName);
     }
 
-    public IRoom getRoom(String roomNumber) {
-        return new Room();
-    }
+//    public IRoom getRoom(String roomNumber) {
+//        return new Room();
+//    }
 
 
     public Reservation bookARoom(String customerEmail, IRoom room, Date checkInDate, Date checkOutDate) {

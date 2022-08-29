@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25ffb9e8-164c-4e8c-8425-3762d52b763b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/design-patterns.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/api/HotelResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/api/HotelResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/FreeRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/FreeRoom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Reservation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/model/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/service/ReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/out/production/reservations_system/service/ReservationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/src/api/HotelResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/api/HotelResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/src/model/FreeRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/model/FreeRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/src/model/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/model/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reservations_system/src/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/model/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../reservations_system/src/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../reservations_system/src/service/ReservationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +28,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/dmalonas/Documents/GitHub/java-programming-2022/design-patterns",
     "node.js.detected.package.eslint": "true",

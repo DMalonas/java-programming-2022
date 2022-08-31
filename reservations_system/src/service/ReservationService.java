@@ -105,7 +105,7 @@ public class ReservationService {
         this.checkoutDate = checkOutDate;
 //        Arrays.asList(1, 2, 3).stream().noneMatch(i ->i > 5);
 //        Arrays.asList(1, 2, 3).stream().filter(i -> i % 2 == 0).collect(toList());
-        return Optional.of(rooms.stream().filter(room -> {
+        List<IRoom> collect = rooms.stream().filter(room -> {
             return reservations.values().stream().flatMap(List::stream).filter(r -> r.getRoom().getId() == room.getId()).noneMatch(r -> {
                 Date rCheckInDate = r.getCheckInDate();
                 Date rCheckOutDate = r.getGetCheckOutDate();
@@ -116,40 +116,26 @@ public class ReservationService {
                 }
                 return false;
             });
-        }).collect(toList())).orElse(
-                rooms.stream().filter(room -> {
-                    this.checkInDate = DateUtil.addDays(checkInDate, 7);
-                    this.checkoutDate = DateUtil.addDays(checkOutDate, 7);
-                    return reservations.values().stream().flatMap(List::stream).filter(r -> r.getRoom().getId() == room.getId()).noneMatch(r -> {
-                        Date rCheckInDate = r.getCheckInDate();
-                        Date rCheckOutDate = r.getGetCheckOutDate();
-                        boolean datesDontOverlap = isBefore(this.checkInDate, rCheckOutDate)
-                                || isAfter(checkoutDate, rCheckInDate);
-                        if (datesDontOverlap == false) { // overlap
-                            return true;
-                        }
-                        return false;
-                    });
-                }).collect(toList())
-        );
+        }).collect(toList());
 
+        this.checkInDate = DateUtil.addDays(checkInDate, 7);
+        this.checkoutDate = DateUtil.addDays(checkOutDate, 7);
 
-
-//        if (collect.size() == 0) {
-//            rooms.stream().filter(room -> {
-//                return reservations.values().stream().flatMap(List::stream).filter(r -> r.getRoom().getId() == room.getId()).noneMatch(r -> {
-//                    Date rCheckInDate = r.getCheckInDate();
-//                    Date rCheckOutDate = r.getGetCheckOutDate();
-//                    boolean datesDontOverlap = isBefore(this.checkInDate, rCheckOutDate)
-//                            || isAfter(checkoutDate, rCheckInDate);
-//                    if (datesDontOverlap == false) { // overlap
-//                        return true;
-//                    }
-//                    return false;
-//                });
-//            }).collect(toList());
-//        }
-//        return collect;
+        if (collect.size() == 0) {
+            collect = rooms.stream().filter(room -> {
+                return reservations.values().stream().flatMap(List::stream).filter(r -> r.getRoom().getId() == room.getId()).anyMatch(r -> {
+                    Date rCheckInDate = r.getCheckInDate();
+                    Date rCheckOutDate = r.getGetCheckOutDate();
+                    boolean datesDontOverlap = isBefore(this.checkInDate, rCheckOutDate)
+                            || isAfter(this.checkoutDate, rCheckInDate);
+                    if (datesDontOverlap) { // doesnt overlap
+                        return true;
+                    }
+                    return false;
+                });
+            }).collect(toList());
+        }
+        return collect;
 
 //        List<IRoom> collect = rooms.stream().flatMap(room ->
 //                reservations.values().stream().flatMap(List::stream)

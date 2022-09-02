@@ -36,7 +36,7 @@ public class ReservationService {
 
     public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         IRoom r = new Room(room.getId(), room.getRoomPrice(), room.getRoomNumber(), room.getRoomType(), false);
-        Reservation reservation = new Reservation(customer, r, checkInDate, checkOutDate);
+        Reservation reservation = new Reservation(customer, r, this.checkInDate, this.checkoutDate);
         List<Reservation> reservationsForCustomer = reservations.get(customer.getEmail());
         if (reservationsForCustomer == null) {
             reservationsForCustomer = new ArrayList<>();
